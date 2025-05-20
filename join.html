@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Join Intelligence Group</title>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-auth-compat.js"></script>
+  <style>
+    body { font-family:Montserrat,sans-serif; display:flex; align-items:center; justify-content:center; height:100vh; margin:0; }
+    .card { padding:2rem; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.1); text-align:center; }
+    button { margin:.5rem; padding:.75rem 1.5rem; border:none; border-radius:50px; background:#007BFF; color:#fff; cursor:pointer; transition:transform .2s; }
+    button:hover { transform:scale(0.95); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Join Intelligence Group</h1>
+    <p>Sign up with Google to get started, then link your Discord and enable 2FA from your profile.</p>
+    <button id="btnGoogle">Sign up with Google</button>
+    <button id="btnDiscord">Link Discord (soon)</button>
+  </div>
+
+  <script>
+    // 1. Pega tu config de Firebase aquí:
+    const firebaseConfig = {
+      apiKey: "TU_API_KEY",
+      authDomain: "TU_PROYECTO.firebaseapp.com",
+      // ... el resto ...
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // 2. Google Login
+    document.getElementById('btnGoogle').onclick = () =>
+      auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+
+    // 3. Tras login, a profile.html
+    auth.onAuthStateChanged(user => {
+      if (user) location.href = 'profile.html';
+    });
+
+    // 4. Discord (placeholder)
+    document.getElementById('btnDiscord').onclick = () =>
+      alert('Vinculación con Discord próximamente');
+  </script>
+</body>
+</html>
