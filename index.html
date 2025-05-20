@@ -10,16 +10,25 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Montserrat', sans-serif; color: #333; }
     header { display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    .logo img { height: 60px; }
+    .logo img { height: 60px; width: auto; display: block; }
     nav ul { list-style: none; display: flex; gap: 30px; }
     nav a { text-decoration: none; font-weight: 500; color: #333; transition: color 0.3s; }
     nav a:hover { color: #007BFF; }
     .hero { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 20px; background: linear-gradient(135deg, #f5f7fa, #c3cfe2); }
     .hero h1 { font-size: 3rem; margin-bottom: 20px; font-weight: 700; }
-    .hero p { font-size: 1.2rem; margin-bottom: 30px; font-weight: 300; max-width: 600px; }
-    .btn { display: inline-block; padding: 15px 30px; font-size: 1rem; font-weight: 500; color: #fff; background: #007BFF; border-radius: 50px; text-decoration: none; transition: background 0.3s; }
-    .btn:hover { background: #0056b3; }
-    footer { text-align: center; padding: 20px; font-size: 0.9rem; background: #f8f9fa; }
+    .hero p { font-size: 1.1rem; margin-bottom: 30px; font-weight: 300; max-width: 600px; line-height: 1.5; }
+    .btn { display: inline-block; padding: 15px 30px; font-size: 1rem; font-weight: 500; color: #fff; background: #007BFF; border-radius: 50px; text-decoration: none; transition: background 0.3s, transform 0.2s; cursor: pointer; border: none; }
+    .btn:hover { transform: scale(0.95); }
+
+    /* Modal styles */
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; }
+    .modal { background: #fff; padding: 30px; border-radius: 8px; width: 80%; max-width: 800px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); transform: translateY(-20%); opacity: 0; transition: transform 0.5s ease, opacity 0.5s ease; }
+    .modal.open { transform: translateY(0); opacity: 1; }
+    .modal h2 { margin-bottom: 15px; font-size: 2rem; }
+    .modal p { font-size: 1rem; line-height: 1.6; margin-bottom: 1em; }
+    .close-btn { margin-top: 20px; display: inline-block; padding: 10px 20px; background: #007BFF; color: #fff; border: none; border-radius: 50px; cursor: pointer; transition: background 0.3s, transform 0.2s; }
+    .close-btn:hover { transform: scale(0.95); }
+    footer { text-align: center; padding: 20px; font-size: 0.9rem; background: #f8f9fa; margin-top: 50px; }
   </style>
 </head>
 <body>
@@ -38,13 +47,45 @@
   </header>
 
   <section class="hero" id="home">
-    <h1>Welcome to Intelligence Group</h1>
-    <p>We provide innovative solutions in data analytics, business intelligence, and digital transformation to take your company to the next level.</p>
-    <a href="#services" class="btn">Learn More</a>
+    <h1>Intelligence Group</h1>
+    <p>Our group focuses on the premise of protecting a secret and futuristic facility located in a highly classified place only a few people know the true location of, by recruiting agents.</p>
+    <button class="btn" id="openModal">Learn More</button>
   </section>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modalBox">
+      <h2>Intelligence Group</h2>
+      <p>Our group focuses on the premise of protecting a secret and futuristic facility located in a highly classified place only a few people know the true location of. This facility was designed by our engineers to serve as an advanced series of training methods in which there are various methods which overall aim to making of you the best agent possible. Through this you will encounter various branches and divisions in which each play a vital role in their respective fields and overall contribute to the facility personnel elite status.</p>
+      <p>Through your journey you will be tasked with attending trainings, preparing yourself against internal and external threats as well as dealing with all types of raiders and becoming the best agent we have to offer and therefore protect the facility.</p>
+      <p>To ensure this you will have to undergo, as stated before, various trainings in which aim training, reaction time, obby skills, guarding skills, communication abilities and loyalty will be key to complete and succeed in your entire formation.</p>
+      <button class="close-btn" id="closeModal">Close</button>
+    </div>
+  </div>
 
   <footer>
     &copy; 2025 Intelligence Group. All rights reserved.
   </footer>
+
+  <script>
+    const openBtn = document.getElementById('openModal');
+    const closeBtn = document.getElementById('closeModal');
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalBox = document.getElementById('modalBox');
+
+    openBtn.addEventListener('click', () => {
+      modalOverlay.style.display = 'flex';
+      setTimeout(() => modalBox.classList.add('open'), 10);
+    });
+    closeBtn.addEventListener('click', () => {
+      modalBox.classList.remove('open');
+      modalBox.addEventListener('transitionend', () => modalOverlay.style.display = 'none', { once: true });
+    });
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
+        closeBtn.click();
+      }
+    });
+  </script>
 </body>
 </html>
