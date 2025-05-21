@@ -48,7 +48,7 @@
       color: #007BFF;
     }
 
-    /* Fondo animado */
+    /* Fondo animado más intenso y rápido */
     .hero {
       display: flex;
       flex-direction: column;
@@ -56,9 +56,9 @@
       justify-content: center;
       text-align: center;
       padding: 100px 20px;
-      background: linear-gradient(-45deg, #f5f7fa, #c3cfe2, #e3eaf6, #cfd9df);
-      background-size: 400% 400%;
-      animation: gradient 12s ease infinite;
+      background: linear-gradient(-45deg, #e3eaf6, #c3cfe2, #a2b6df, #879dc9);
+      background-size: 600% 600%;
+      animation: gradient 6s ease infinite;
     }
 
     @keyframes gradient {
@@ -73,7 +73,6 @@
       }
     }
 
-    /* Animaciones de entrada */
     .hero h1, .hero p, .hero .btn {
       opacity: 0;
       transform: translateY(30px);
@@ -83,16 +82,16 @@
     .hero h1 {
       font-size: 4rem;
       font-weight: 700;
-      margin-bottom: 30px;
+      margin-bottom: 50px; /* más espacio con el texto */
       animation-delay: 0.2s;
     }
 
     .hero p {
       font-size: 1.2rem;
       max-width: 650px;
-      margin-bottom: 30px;
+      margin-bottom: 40px; /* más espacio con el botón */
       font-weight: 300;
-      line-height: 1.5;
+      line-height: 1.6;
       animation-delay: 0.4s;
     }
 
@@ -113,7 +112,7 @@
       font-size: 1rem;
       font-weight: 500;
       color: #fff;
-      background: linear-gradient(45deg, #222, #000);
+      background: linear-gradient(45deg, #333, #000);
       border: none;
       border-radius: 50px;
       cursor: pointer;
@@ -210,7 +209,6 @@
     <button class="btn" id="openModal">Learn More</button>
   </section>
 
-  <!-- Modal -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal" id="modalBox">
       <h2>Intelligence Group</h2>
