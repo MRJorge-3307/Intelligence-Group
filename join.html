@@ -4,56 +4,177 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Join Intelligence Group</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Teko:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #000000;
+      --secondary: #111111;
+      --accent: #ffffff;
+      --text: #f0f0f0;
+      --text-secondary: #aaaaaa;
+      --highlight: rgba(255, 255, 255, 0.1);
+    }
+
     body {
-      font-family: Montserrat, sans-serif;
+      font-family: 'Montserrat', sans-serif;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
-      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      background: var(--primary);
+      position: relative;
+      overflow: hidden;
     }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 20%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.03) 0%, transparent 20%),
+        linear-gradient(to bottom, var(--primary), var(--secondary));
+      z-index: -1;
+    }
+
     .card {
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 2.5rem;
       text-align: center;
-      background: #fff;
-      width: 300px;
+      background: rgba(17, 17, 17, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      width: 90%;
+      max-width: 400px;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: cardEntrance 0.8s 0.3s forwards;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
     }
-    .card h1 {
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--highlight), transparent);
+      transition: 0.5s;
+    }
+
+    .card:hover::before {
+      left: 100%;
+    }
+
+    .logo {
       margin-bottom: 1.5rem;
-      font-size: 1.5rem;
-      font-weight: 500;
+      transition: transform 0.3s;
     }
+
+    .logo img {
+      height: 80px;
+      filter: drop-shadow(0 0 5px var(--accent));
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes cardEntrance {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    h1 {
+      font-family: 'Teko', sans-serif;
+      color: var(--accent);
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: var(--accent);
+    }
+
     button {
       display: block;
       width: 100%;
-      margin: 0.75rem 0;
-      padding: 0.75rem;
-      border: none;
-      border-radius: 50px;
-      background: #007BFF;
-      color: #fff;
-      font-size: 1rem;
+      margin: 1rem 0;
+      padding: 1rem;
+      border: 1px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      font-family: 'Teko', sans-serif;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
     }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--highlight), transparent);
+      transition: 0.5s;
+    }
+
     button:hover {
-      transform: scale(0.95);
+      background: var(--highlight);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
+
+    button:hover::before {
+      left: 100%;
+    }
+
     button.home-btn {
-      background: #6c757d;
+      margin-top: 2rem;
+      border-color: var(--text-secondary);
+      color: var(--text-secondary);
+    }
+
+    button.home-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>Join Intelligence Group</h1>
-    <button onclick="window.open('https://google.com', '_blank')">Join Roblox Group</button>
-    <button onclick="window.open('https://google.com', '_blank')">Join Discord Group</button>
-    <button class="home-btn" onclick="window.location.href='index.html#top'">Go Home</button>
+    <div class="logo">
+      <img src="WhiteIcon.webp" alt="Group Icon">
+    </div>
+    <h1>Enlist Now</h1>
+    <button onclick="window.open('https://google.com', '_blank')">ROBLOX GROUP</button>
+    <button onclick="window.open('https://google.com', '_blank')">DISCORD SERVER</button>
+    <button class="home-btn" onclick="window.location.href='index.html#top'">RETURN TO BASE</button>
   </div>
 </body>
 </html>
