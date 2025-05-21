@@ -16,7 +16,7 @@
     }
 
     * { margin:0; padding:0; box-sizing:border-box; }
-    
+
     body {
       font-family: 'Montserrat', sans-serif;
       background: var(--primary);
@@ -26,7 +26,6 @@
       min-height: 100vh;
       color: var(--text);
       position: relative;
-      overflow: hidden;
     }
 
     body::before {
@@ -44,10 +43,10 @@
     }
 
     .container {
-      background: rgba(17, 17, 17, 0.9);
+      background: rgba(17, 17, 17, 0.95);
       padding: 2.5rem;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
       width: 90%;
       max-width: 500px;
       transform: translateY(20px);
@@ -58,43 +57,30 @@
     }
 
     @keyframes containerEntrance {
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    .logo {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .logo img {
-      height: 60px;
-      filter: drop-shadow(0 0 5px var(--accent));
+      to { transform: translateY(0); opacity: 1; }
     }
 
     h1 {
       font-family: 'Teko', sans-serif;
       text-align: center;
       color: var(--accent);
-      font-size: 2.2rem;
+      font-size: 2.5rem;
       margin-bottom: 2rem;
       letter-spacing: 2px;
       text-transform: uppercase;
       position: relative;
-      padding-bottom: 1rem;
     }
 
     h1::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      bottom: -15px;
       left: 50%;
       transform: translateX(-50%);
-      width: 60px;
+      width: 80px;
       height: 2px;
       background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
     }
 
     form {
@@ -103,30 +89,34 @@
       gap: 1.5rem;
     }
 
+    .form-group {
+      position: relative;
+    }
+
     label {
       display: block;
-      font-weight: 500;
       margin-bottom: 0.5rem;
-      text-transform: uppercase;
+      font-weight: 500;
       font-size: 0.9rem;
       color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     input, textarea {
+      width: 100%;
       padding: 1rem;
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       color: var(--text);
       font-size: 1rem;
-      width: 100%;
       transition: all 0.3s;
     }
 
     input:focus, textarea:focus {
       outline: none;
       border-color: var(--accent);
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
     }
 
     textarea {
@@ -142,11 +132,12 @@
       font-family: 'Teko', sans-serif;
       font-size: 1.1rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       cursor: pointer;
       transition: all 0.3s;
       position: relative;
       overflow: hidden;
+      margin-top: 1rem;
     }
 
     button::before {
@@ -163,7 +154,7 @@
     button:hover {
       background: var(--highlight);
       transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     }
 
     button:hover::before {
@@ -174,10 +165,10 @@
       position: absolute;
       top: 1.5rem;
       right: 1.5rem;
-      padding: 0.7rem 1.2rem;
-      font-size: 0.9rem;
+      padding: 0.5rem 1.5rem;
       border-color: var(--text-secondary);
       color: var(--text-secondary);
+      font-size: 0.9rem;
     }
 
     .home-btn:hover {
@@ -185,7 +176,7 @@
       color: var(--accent);
     }
 
-    /* Modal Styles */
+    /* Modal mejorado */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -203,85 +194,90 @@
     .modal {
       background: var(--secondary);
       padding: 2.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       width: 90%;
       max-width: 400px;
       text-align: center;
       position: relative;
+      transform: scale(0.95);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .modal::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--accent);
-      animation: modalLine 3s infinite;
-    }
-
-    @keyframes modalLine {
-      0% { width: 0; left: 0; }
-      50% { width: 100%; left: 0; }
-      100% { width: 0; left: 100%; }
+    .modal.active {
+      transform: scale(1);
+      opacity: 1;
     }
 
     .modal h2 {
       font-family: 'Teko', sans-serif;
       color: var(--accent);
-      font-size: 1.8rem;
+      font-size: 2rem;
       margin-bottom: 1.5rem;
-      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
     .modal p {
-      font-size: 0.95rem;
-      line-height: 1.6;
       color: var(--text-secondary);
+      line-height: 1.6;
       margin-bottom: 2rem;
+      font-size: 0.95rem;
     }
 
     .modal button {
       margin: 0 0.5rem;
       padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+    }
+
+    .scan-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      animation: scan 3s infinite;
+    }
+
+    @keyframes scan {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="logo">
-      <img src="WhiteIcon.webp" alt="Intelligence Group Logo">
-    </div>
     <button class="home-btn" onclick="window.location.href='index.html#top'">RETURN TO BASE</button>
-    <h1>Secure Communication</h1>
+    <h1>Contact Us</h1>
     <form id="contactForm">
-      <div>
-        <label for="email">Response Coordinates</label>
-        <input type="email" id="email" name="email" required placeholder="Enter secure e-mail">
+      <div class="form-group">
+        <label for="email">E-mail to reply *</label>
+        <input type="email" id="email" name="email" required>
       </div>
-      <div>
-        <label for="name">Operative Identity</label>
-        <input type="text" id="name" name="name" required placeholder="Enter codename">
+      <div class="form-group">
+        <label for="name">Name *</label>
+        <input type="text" id="name" name="name" required>
       </div>
-      <div>
-        <label for="subject">Mission Objective</label>
-        <input type="text" id="subject" name="subject" required placeholder="Enter subject classification">
+      <div class="form-group">
+        <label for="subject">Subject *</label>
+        <input type="text" id="subject" name="subject" required>
       </div>
-      <div>
-        <label for="message">Encrypted Briefing</label>
-        <textarea id="message" name="message" required placeholder="Enter encrypted message"></textarea>
+      <div class="form-group">
+        <label for="message">Explanation *</label>
+        <textarea id="message" name="message" required></textarea>
       </div>
-      <button type="submit">ENCRYPT & SEND</button>
+      <button type="submit" class="submit-btn">SEND MESSAGE</button>
     </form>
   </div>
 
-  <!-- Confirmation Modal -->
+  <!-- Modal de Confirmación Mejorado -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
+      <div class="scan-line"></div>
       <h2>CONFIRM TRANSMISSION</h2>
-      <p>By submitting this communication, you acknowledge adherence to all security protocols. Unauthorized disclosure may result in disciplinary action.</p>
-      <button id="cancelBtn">ABORT</button>
+      <p>By submitting this form, you agree to our security protocols. Unauthorized use may result in disciplinary action.</p>
+      <button id="cancelBtn">CANCEL</button>
       <button id="confirmBtn">CONFIRM</button>
     </div>
   </div>
@@ -289,16 +285,19 @@
   <script>
     const form = document.getElementById('contactForm');
     const modalOverlay = document.getElementById('modalOverlay');
+    const modal = document.querySelector('.modal');
     const cancelBtn = document.getElementById('cancelBtn');
     const confirmBtn = document.getElementById('confirmBtn');
 
     form.addEventListener('submit', e => {
       e.preventDefault();
       modalOverlay.style.display = 'flex';
+      setTimeout(() => modal.classList.add('active'), 10);
     });
 
     cancelBtn.addEventListener('click', () => {
-      modalOverlay.style.display = 'none';
+      modal.classList.remove('active');
+      setTimeout(() => modalOverlay.style.display = 'none', 300);
     });
 
     confirmBtn.addEventListener('click', () => {
@@ -306,10 +305,13 @@
       const name = encodeURIComponent(document.getElementById('name').value);
       const subject = encodeURIComponent(document.getElementById('subject').value);
       const message = encodeURIComponent(document.getElementById('message').value);
-      const mailtoLink = `mailto:mrjorgesite@gmail.com?subject=${subject}&body=Operative:%20${name}%0DCoordinates:%20${email}%0DBriefing:%20${message}`;
+      const mailtoLink = `mailto:mrjorgesite@gmail.com?subject=${subject}&body=Name:%20${name}%0DEmail:%20${email}%0DMessage:%20${message}`;
       window.location.href = mailtoLink;
-      modalOverlay.style.display = 'none';
-      form.reset();
+      modal.classList.remove('active');
+      setTimeout(() => {
+        modalOverlay.style.display = 'none';
+        form.reset();
+      }, 300);
     });
   </script>
 </body>
